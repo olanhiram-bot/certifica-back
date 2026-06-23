@@ -1,0 +1,12 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+
+    # Nivel de análisis estricto (0 mínimo - 10 máximo)
+    level: 8
+
+    excludePaths:
+        - vendor/

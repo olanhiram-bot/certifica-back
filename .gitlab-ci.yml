@@ -1,0 +1,52 @@
+variables:
+  GIT_STRATEGY: none
+
+stages:
+  - pull
+  - validate
+  - deploy
+
+# ── Templates ─────────────────────────────────────────
+
+.on_develop:
+  only:
+    - develop
+  tags:
+    - qa
+  before_script:
+    - git config --global --add safe.directory $QA_PATH
+    - cd $QA_PATH
+
+# ── develop → Servidor QA ─────────────────────────────
+
+pull:qa:
+  extends: .on_develop
+  stage: pull
+  script:
+    - git pull origin develop
+    - php artisan config:clear
+    - php artisan cache:clear
+    - php artisan route:clear
+    - php artisan optimize:clear
+
+validate:qa:
+  extends: .on_develop
+  stage: validate
+  script:
+    - composer install --no-interaction --prefer-dist
+    - mkdir -p storage/tmp
+    - TMPDIR=$(pwd)/storage/tmp ./vendor/bin/pint --test
+    - ./vendor/bin/phpstan analyse --memory-limit=256M --no-progress
+    - ./vendor/bin/phpmd app/ text phpmd.xml
+    - php artisan test --coverage-text
+  coverage: '/^\s*Lines:\s*\d+.\d+\%/'
+
+deploy:qa:
+  extends: .on_develop
+  stage: deploy
+  script:
+    - chmod -R u+w vendor || true
+    - rm -rf vendor
+    - composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader
+    - php artisan migrate --force
+    - php artisan optimize
