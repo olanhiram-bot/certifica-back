@@ -11,9 +11,14 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AuthService
 {
@@ -184,6 +189,76 @@ class AuthService
             'user' => $user,
             'permissions' => [],
         ];
+    }
+
+    public function sendPasswordResetLink(string $email): ?string
+    {
+        $email = mb_strtolower(trim($email));
+        $user = User::whereRaw('LOWER(username) = ?', [$email])->first();
+
+        if (! $user) {
+            return null;
+        }
+
+        $token = Str::random(64);
+
+        DB::table('password_reset_tokens')->updateOrInsert(
+            ['email' => $email],
+            [
+                'token' => Hash::make($token),
+                'created_at' => now(),
+            ],
+        );
+
+        $frontendUrl = rtrim((string) config('app.frontend_url', env('FRONTEND_URL', 'http://127.0.0.1:5173')), '/');
+        $resetUrl = $frontendUrl.'/recuperar-cuenta/restablecer?email='.urlencode($email).'&token='.urlencode($token);
+
+        try {
+            Mail::send(
+                'emails.password-reset',
+                ['resetUrl' => $resetUrl],
+                function ($message) use ($email) {
+                    $message->to($email)->subject('Recupera tu cuenta de Certifica');
+                },
+            );
+        } catch (\Throwable $e) {
+            Log::error('No fue posible enviar el correo de recuperación.', [
+                'email' => $email,
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        return $resetUrl;
+    }
+
+    public function resetPassword(string $email, string $token, string $password): bool
+    {
+        $email = mb_strtolower(trim($email));
+        $reset = DB::table('password_reset_tokens')->where('email', $email)->first();
+
+        if (! $reset || ! Hash::check($token, $reset->token)) {
+            return false;
+        }
+
+        if ($reset->created_at && Carbon::parse($reset->created_at)->addMinutes(60)->isPast()) {
+            DB::table('password_reset_tokens')->where('email', $email)->delete();
+            return false;
+        }
+
+        $user = User::whereRaw('LOWER(username) = ?', [$email])->first();
+
+        if (! $user) {
+            return false;
+        }
+
+        $user->forceFill([
+            'password' => Hash::make($password),
+        ])->save();
+
+        $user->tokens()->delete();
+        DB::table('password_reset_tokens')->where('email', $email)->delete();
+
+        return true;
     }
 
     /**

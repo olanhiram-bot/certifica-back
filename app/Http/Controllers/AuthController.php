@@ -14,6 +14,7 @@ use App\Http\Resources\AuthResource;
 use App\Services\AuthService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -82,7 +83,7 @@ class AuthController extends Controller
     /**
      * @unauthenticated
      */
-    public function loginBySSO(AuthLoginBySSORequest $request): AuthResource|JsonResponse
+public function loginBySSO(AuthLoginBySSORequest $request): AuthResource|JsonResponse
     {
         try {
             $authData = $this->authService->loginBySSO($request->input('authorization_code'));
@@ -96,12 +97,56 @@ class AuthController extends Controller
             return new AuthResource((object) $authData);
         }
 
-        return response()->json(['title' => 'Credenciales incorrectas', 'error' => 'El nombre de usuario o contraseña son incorrectos.'], 401);
+return response()->json(['title' => 'Credenciales incorrectas', 'error' => 'El nombre de usuario o contraseña son incorrectos.'], 401);
+}
+
+/**
+ * @unauthenticated
+ */
+public function forgotPassword(Request $request): JsonResponse
+{
+    $data = $request->validate([
+        'email' => ['required', 'email', 'max:255'],
+    ]);
+
+    $resetUrl = $this->authService->sendPasswordResetLink($data['email']);
+
+    $payload = [
+        'message' => 'Si el correo está registrado, enviaremos un enlace para recuperar la cuenta.',
+    ];
+
+    if (app()->isLocal() && $resetUrl) {
+        $payload['reset_url'] = $resetUrl;
     }
 
-    /**
-     * @authenticated
-     */
+    return response()->json($payload);
+}
+
+/**
+ * @unauthenticated
+ */
+public function resetPassword(Request $request): JsonResponse
+{
+    $data = $request->validate([
+        'email' => ['required', 'email', 'max:255'],
+        'token' => ['required', 'string'],
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
+    ]);
+
+    if (! $this->authService->resetPassword($data['email'], $data['token'], $data['password'])) {
+        return response()->json([
+            'message' => 'El enlace de recuperación no es válido o ya expiró.',
+        ], 422);
+    }
+
+    return response()->json([
+        'message' => 'Contraseña actualizada correctamente.',
+    ]);
+}
+
+/**
+ * @authenticated
+ */
     public function logout(): JsonResponse
     {
         /** @var \App\Models\User $user */

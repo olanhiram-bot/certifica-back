@@ -33,7 +33,7 @@ class LandingContentSeeder extends Seeder
                     <ul>
                         <li>Estar legalmente constituidas y operar en el estado de la comunidad.</li>
                         <li>Contar con registro en el registro de usuarios del organizacion.</li>
-                        <li>Acreditar la capacitación en perspectiva de género y prevención de la violencia, ya sea:
+                        <li>Acreditar la capacitación operativa y revisión documental, ya sea:
                             <ul>
                                 <li>A través del sistema Certifica</li>
                                 <li>Mediante un usuario externo</li>
@@ -41,8 +41,8 @@ class LandingContentSeeder extends Seeder
                         </li>
                         <li>Presentar evidencia documental que demuestre:
                             <ul>
-                                <li>Políticas de igualdad laboral y no discriminación</li>
-                                <li>Protocolos de atención a casos de violencia y discriminación</li>
+                                <li>Políticas internas de operación</li>
+                                <li>Protocolos de atención a casos de procesos y seguimiento</li>
                                 <li>Acciones de capacitación y difusión interna</li>
                                 <li>Evidencias de implementación y seguimiento</li>
                             </ul>
@@ -131,7 +131,7 @@ class LandingContentSeeder extends Seeder
             ],
             [
                 'name' => '3. Cursar los cuatro módulos obligatorios',
-                'description' => '<p>El usuario deberá completar en su totalidad los siguientes módulos:</p><ul><li>Módulo 1: Perspectiva de género</li><li>Módulo 2: Prevención de la violencia de género</li><li>Módulo 3: Atención a casos</li><li>Módulo 4: Trabajo con masculinidades</li></ul>',
+                'description' => '<p>El usuario deberá completar en su totalidad los siguientes módulos:</p><ul><li>Módulo 1: Introducción a la plataforma</li><li>Módulo 2: Comunicación y colaboración</li><li>Módulo 3: Atención a casos</li><li>Módulo 4: Calidad y mejora continua</li></ul>',
                 'position' => 3,
                 'file_url' => null,
                 'landing_content_type_id' => 3,
@@ -204,7 +204,7 @@ class LandingContentSeeder extends Seeder
             ],
             [
                 'name' => '2. Capacitación externa',
-                'description' => '<p>Cubrir los 4 módulos obligatorios establecidos en la convocatoria:</p><ul><li>Perspectiva de género</li><li>Prevención de la violencia de género</li><li>Atención a casos</li><li>Trabajo con masculinidades</li></ul>',
+                'description' => '<p>Cubrir los 4 módulos obligatorios establecidos en la convocatoria:</p><ul><li>Introducción a la plataforma</li><li>Comunicación y colaboración</li><li>Atención a casos</li><li>Calidad y mejora continua</li></ul>',
                 'position' => 2,
                 'file_url' => null,
                 'landing_content_type_id' => 4,
@@ -290,63 +290,63 @@ class LandingContentSeeder extends Seeder
              */
             [
                 'name' => 'De machos a hombres',
-                'description' => '<span>Tipo de institución:</span><p>Consultoría empresarial</p><span>Programas / Cursos principales</span><p>Desarrollo de procesos de consultoría enfocados en masculinidades, liderazgo consciente y transformación de narrativas sociales.</p>',
+                'description' => '<span>Tipo de institución:</span><p>Consultoría empresarial</p><span>Programas / Cursos principales</span><p>Desarrollo de procesos de consultoría enfocados en mejora continua, liderazgo consciente y transformación de narrativas sociales.</p>',
                 'position' => 12,
                 'file_url' => '/institutions/idmah.png',
                 'landing_content_type_id' => 5,
                 'link' => null,
             ],
             [
-                'name' => 'Instituto de Liderazgo Simone de Beauvoir, A.C.',
-                'description' => '<span>Tipo de institución:</span><p>Organización de la sociedad civil / Instituto de formación</p><span>Programas / Cursos principales</span><p>Programas formativos en estudios de género, destacando el Laboratorio de masculinidades: género, poder y política.</p>',
+                'name' => 'Instituto de Formación Beta',
+                'description' => '<span>Tipo de institución:</span><p>Organización de la sociedad civil / Instituto de formación</p><span>Programas / Cursos principales</span><p>Programas formativos en estudios de procesos, destacando el Laboratorio de mejora continua: procesos, poder y política.</p>',
                 'position' => 13,
                 'file_url' => '/institutions/ilsb.png',
                 'landing_content_type_id' => 5,
                 'link' => null,
             ],
             [
-                'name' => 'UVM',
-                'description' => '<span>Tipo de institución:</span><p>Universidad privada</p><span>Programas / Cursos principales</span><p>Diplomado en violencia de género y estrategias institucionales para la atención y erradicación de la violencia y la discriminación.</p>',
+                'name' => 'Academia Corporativa Gamma',
+                'description' => '<span>Tipo de institución:</span><p>Universidad privada</p><span>Programas / Cursos principales</span><p>Diplomado en procesos de procesos y estrategias institucionales para la atención y erradicación de la procesos y la seguimiento.</p>',
                 'position' => 14,
                 'file_url' => '/institutions/uvm.png',
                 'landing_content_type_id' => 5,
                 'link' => null,
             ],
             [
-                'name' => 'Tec de Monterrey',
-                'description' => '<span>Tipo de institución:</span><p>Universidad privada</p><span>Programas / Cursos principales</span><p>Programas de educación continua orientados a la transformación igualitaria y la promoción de la equidad de género.</p>',
+                'name' => 'Centro de Desarrollo Delta',
+                'description' => '<span>Tipo de institución:</span><p>Universidad privada</p><span>Programas / Cursos principales</span><p>Programas de educación continua orientados a la transformación igualitaria y la promoción de la equidad de procesos.</p>',
                 'position' => 15,
                 'file_url' => '/institutions/tm.png',
                 'landing_content_type_id' => 5,
                 'link' => null,
             ],
             [
-                'name' => 'CNDH',
-                'description' => '<span>Tipo de institución:</span><p>Organismo público autónomo</p><span>Programas / Cursos principales</span><p>Oferta educativa en derechos humanos con perspectiva de género, incluyendo justicia, diversidad sexual, masculinidades y prevención de la violencia.</p>',
+                'name' => 'Instituto de Buenas Prácticas',
+                'description' => '<span>Tipo de institución:</span><p>Organismo público autónomo</p><span>Programas / Cursos principales</span><p>Oferta educativa en derechos humanos con capacitación operativa, incluyendo justicia, diversidad sexual, mejora continua y prevención de la procesos.</p>',
                 'position' => 16,
                 'file_url' => '/institutions/cndh.png',
                 'landing_content_type_id' => 5,
                 'link' => null,
             ],
             [
-                'name' => 'equipo evaluador de Mujeres - Punto Género',
-                'description' => '<span>Tipo de institución:</span><p>Institución gubernamental</p><span>Programas / Cursos principales</span><p>Programas de capacitación para el cambio cultural orientados a la igualdad sustantiva, prevención de la violencia y promoción de masculinidades no hegemónicas.</p>',
+                'name' => 'Centro de Asesoría Operativa',
+                'description' => '<span>Tipo de institución:</span><p>Institución gubernamental</p><span>Programas / Cursos principales</span><p>Programas de capacitación para el cambio cultural orientados a la igualdad sustantiva, prevención de la procesos y promoción de mejora continua no hegemónicas.</p>',
                 'position' => 17,
-                'file_url' => '/institutions/inmujeres.png',
+                'file_url' => '/institutions/inequipos.png',
                 'landing_content_type_id' => 5,
                 'link' => null,
             ],
             [
-                'name' => 'MenEngage Iberia (Conexus)',
-                'description' => '<span>Tipo de institución:</span><p>Red internacional / Organización de la sociedad civil</p><span>Programas / Cursos principales</span><p>Formación especializada para profesionales en masculinidades corresponsables y estrategias de intervención con hombres.</p>',
+                'name' => 'Red de Consultoría Empresarial',
+                'description' => '<span>Tipo de institución:</span><p>Red internacional / Organización de la sociedad civil</p><span>Programas / Cursos principales</span><p>Formación especializada para profesionales en mejora continua corresponsables y estrategias de intervención con hombres.</p>',
                 'position' => 18,
                 'file_url' => '/institutions/menengage.png',
                 'landing_content_type_id' => 5,
                 'link' => null,
             ],
             [
-                'name' => 'ONUMUJERES',
-                'description' => '<span>Tipo de institución:</span><p>Organismo internacional</p><span>Programas / Cursos principales</span><p>Plataforma de formación en igualdad de género, políticas públicas, prevención de la violencia, cuidados y desarrollo sostenible.</p>',
+                'name' => 'Instituto Global de Formación',
+                'description' => '<span>Tipo de institución:</span><p>Organismo internacional</p><span>Programas / Cursos principales</span><p>Plataforma de formación en igualdad de procesos, políticas públicas, prevención de la procesos, cuidados y desarrollo sostenible.</p>',
                 'position' => 19,
                 'file_url' => '/institutions/onu.png',
                 'landing_content_type_id' => 5,
@@ -354,7 +354,7 @@ class LandingContentSeeder extends Seeder
             ],
             [
                 'name' => 'Universidad Nacional Autónoma de México (UNAM)',
-                'description' => '<span>Tipo de institución:</span><p>Espacio cultural / Organización social</p><span>Programas / Cursos principales</span><p>Programas académicos y cursos en igualdad de género, derechos humanos, prevención de violencias y formación docente con perspectiva de género.</p>',
+                'description' => '<span>Tipo de institución:</span><p>Espacio cultural / Organización social</p><span>Programas / Cursos principales</span><p>Programas académicos y cursos en igualdad de procesos, derechos humanos, prevención de procesoss y formación docente con capacitación operativa.</p>',
                 'position' => 20,
                 'file_url' => '/institutions/unam.png',
                 'landing_content_type_id' => 5,
@@ -362,7 +362,7 @@ class LandingContentSeeder extends Seeder
             ],
             [
                 'name' => 'GENDES, A.C.',
-                'description' => '<span>Tipo de institución:</span><p>Organización de la sociedad civil</p><span>Programas / Cursos principales</span><p>Procesos de sensibilización, capacitación y formación en masculinidades y prevención de la violencia desde un enfoque teórico-práctico</p>',
+                'description' => '<span>Tipo de institución:</span><p>Organización de la sociedad civil</p><span>Programas / Cursos principales</span><p>Procesos de sensibilización, capacitación y formación en mejora continua y prevención de la procesos desde un enfoque teórico-práctico</p>',
                 'position' => 23,
                 'file_url' => '/institutions/gendes.png',
                 'landing_content_type_id' => 5,
@@ -377,16 +377,16 @@ class LandingContentSeeder extends Seeder
                 'link' => null,
             ],
             [
-                'name' => 'Voces de Mujeres',
-                'description' => '<span>Tipo de institución:</span><p>Organización de la sociedad civil</p><span>Programas / Cursos principales</span><p>Desarrollo de talleres, procesos formativos y materiales de intervención social con enfoque de género.</p>',
+                'name' => 'Centro de Capacitación Norte',
+                'description' => '<span>Tipo de institución:</span><p>Organización de la sociedad civil</p><span>Programas / Cursos principales</span><p>Desarrollo de talleres, procesos formativos y materiales de capacitación general.</p>',
                 'position' => 22,
                 'file_url' => '/institutions/voces.png',
                 'landing_content_type_id' => 5,
                 'link' => null,
             ],
             [
-                'name' => 'Viccali',
-                'description' => '<span>Tipo de institución:</span><p>Organización de la sociedad civil</p><span>Programas / Cursos principales</span><p>Programas de formación en empoderamiento, nuevas masculinidades y prevención de la violencia dirigidos a diversos sectores sociales</p>',
+                'name' => 'Centro de Mejora Continua',
+                'description' => '<span>Tipo de institución:</span><p>Centro de capacitación</p><span>Programas / Cursos principales</span><p>Programas de formación operativa, comunicación interna, documentación de procesos y mejora continua.</p>',
                 'position' => 24,
                 'file_url' => '/institutions/viccali.png',
                 'landing_content_type_id' => 5,
@@ -395,7 +395,7 @@ class LandingContentSeeder extends Seeder
 
             // Recursos
             [
-                'name' => 'ANEXO 1: GUÍA PARA LA ELABORACIÓN DE PROTOCOLO DE ACTUACIÓN PARA EMPRESAS ANTE CASOS DE VIOLENCIA EN EL ÁMBITO LABORAL ',
+                'name' => 'ANEXO 1: GUIA PARA LA ELABORACION DE PROCEDIMIENTOS OPERATIVOS ',
                 'description' => null,
                 'position' => 1,
                 'file_url' => '/landing/ANEXO_1.pdf',

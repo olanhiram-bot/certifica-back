@@ -31,6 +31,8 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
 Route::post('/login/username', [AuthController::class, 'loginByUsername'])->name('auth.loginByUsername');
 Route::post('/login/efirma', [AuthController::class, 'loginByEfirma'])->name('auth.loginByEfirma');
 Route::post('/login/sso', [AuthController::class, 'loginBySSO'])->name('auth.loginBySSO');
+Route::post('/password/forgot', [AuthController::class, 'forgotPassword'])->name('auth.password.forgot');
+Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('auth.password.reset');
 
 // Rutas protegidas
 Route::middleware('auth:sanctum')->group(function () {
